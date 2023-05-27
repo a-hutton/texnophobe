@@ -1,0 +1,15 @@
+{
+  "name": "texnophobe",
+  "version": "0.1.0",
+  "description": "A simplified math syntax designed to be (somewhat) readable with or without proper rendering",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc --build"
+  },
+  "author": "Adam Hutton",
+  "license": "ISC",
+  "dependencies": {
+    "typescript": "^5.0.4"
+  }
+}
