@@ -1,0 +1,1 @@
+antlr4 -o ./parser/generated -Dlanguage=TypeScript -no-listener -visitor ./parser/Texnophobe.g4 
