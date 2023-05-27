@@ -3,9 +3,17 @@
   "version": "0.1.0",
   "description": "A simplified math syntax designed to be (somewhat) readable with or without proper rendering",
   "main": "dist/index.js",
+  "keywords": [
+    "math",
+    "LaTeX"
+  ],
   "scripts": {
     "test": "ts-mocha tests/*.spec.ts",
     "build": "tsc --build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/a-hutton/texnophobe.git"
   },
   "author": "Adam Hutton",
   "license": "ISC",
