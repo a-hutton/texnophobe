@@ -5,6 +5,7 @@
     "removeComments": false,
     "sourceMap": true,
     "target": "ES2021",
-    "outDir": "dist"
+    "outDir": "dist",
+    "moduleResolution": "node",
   }
 }

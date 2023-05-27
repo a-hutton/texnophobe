@@ -9,7 +9,12 @@
   },
   "author": "Adam Hutton",
   "license": "ISC",
+  "type": "module",
   "dependencies": {
+    "antlr4": "^4.13.0",
     "typescript": "^5.0.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.2.5"
   }
 }

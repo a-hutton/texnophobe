@@ -1,2 +1,8 @@
 dist
 node_modules
+
+#antlr generated files
+.antlr
+
+#the auto-generated parser files
+parser/generated/*
