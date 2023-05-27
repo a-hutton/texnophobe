@@ -21,4 +21,18 @@ describe("Latex Generation", () => {
     const actual = generateLatex(original);
     assert.equal(expected, actual);
   });
+  it("works with matrices", () => {
+    const original = `X = (1  0  0)
+    (0  1  0)
+    (0  0  1)`;
+    const expected = `X = 
+\\begin{pmatrix}
+  1 & 0 & 0 \\\\
+  0 & 1 & 0 \\\\
+  0 & 0 & 1 \\\\
+\\end{pmatrix}
+`;
+    const actual = generateLatex(original);
+    assert.equal(expected, actual);
+  });
 });
