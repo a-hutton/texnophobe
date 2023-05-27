@@ -133,14 +133,18 @@ export class LatexVisitor extends NewMathVisitor<string> {
         openingCommand = "\\left[";
         closingCommand = "\\right]";
         break;
-      // TODO allow banana brackets
+      case "[[":
+        // TODO make work with mathjax/obsidian and latex (stmaryrd double brackets)
+        openingCommand = "\\textlbrackdbl ";
+        closingCommand = "\\textrbrackdbl";
+        break;
       case "{":
         openingCommand = "\\left\\{";
         closingCommand = "\\right\\}";
         break;
       case "<":
-        openingCommand = "\\left\\langle";
-        closingCommand = "\\right\\rangle";
+        openingCommand = "\\left\\langle ";
+        closingCommand = "\\right\\rangle ";
       default:
         openingCommand = opening;
         closingCommand = opening;
