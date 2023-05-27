@@ -3,7 +3,7 @@ import {
   getFancyChar,
   getGreekLetter,
   operators,
-} from "./LatexOperators.js";
+} from "./LatexOperators";
 import {
   BracketsContext,
   MathBracketsContext,
@@ -24,8 +24,8 @@ import {
   TokenReservedWordContext,
   VectorChildContext,
   VectorLineContext,
-} from "./generated/TexnophobeParser.js";
-import NewMathVisitor from "./generated/TexnophobeVisitor.js";
+} from "./generated/TexnophobeParser";
+import NewMathVisitor from "./generated/TexnophobeVisitor";
 
 export class LatexVisitor extends NewMathVisitor<string> {
   #currentBracketOpening: string = "";

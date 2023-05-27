@@ -2,14 +2,9 @@ import { CharStream, CommonTokenStream } from "antlr4";
 import TexnophobeLexer from "./parser/generated/TexnophobeLexer.js";
 import TexnophobeParser from "./parser/generated/TexnophobeParser.js";
 import { LatexVisitor } from "./parser/LatexVisitor.js";
+import { generateLatex } from "./generator.js";
 
-const inputMath = `x`;
-const chars = new CharStream(inputMath);
-const lexer = new TexnophobeLexer(chars);
-const tokens = new CommonTokenStream(lexer);
-const parser = new TexnophobeParser(tokens);
-const tree = parser.start();
-const visitor = new LatexVisitor();
-const result = visitor.visit(tree)[0];
+const input = `x := (-b +- _/(b^2-4ac))/(2a)`;
+const result = generateLatex(input);
 
 console.log(result);
