@@ -151,6 +151,7 @@ export class LatexVisitor extends NewMathVisitor<string> {
     }
     let children = this.visit(ctx._first);
     for (const child of ctx.math_list()) {
+      if (child === ctx._first) continue;
       children += `, ${this.visit(child)}`;
     }
     return `${openingCommand}${children}${closingCommand} `;
