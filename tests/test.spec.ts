@@ -41,4 +41,17 @@ describe("Latex Generation", () => {
     const actual = generateLatex(original);
     assert.equal(actual, expected);
   });
+  it("can do case functions", () => {
+    const original = `f(x) = { 1/x    | if x >= 1
+       { 0      | if x = 0
+       { -1     | if x <= -1`;
+    const expected = `f \\left(x \\right) = 
+\\begin{cases}
+\\frac{1 }{x } & \\text{if } x \\geq 1  \\\\
+0 & \\text{if } x = 0  \\\\
+-1 & \\text{if } x \\leq -1  \\\\
+\\end{cases}\n`;
+    const actual = generateLatex(original);
+    assert.equal(actual, expected);
+  });
 });

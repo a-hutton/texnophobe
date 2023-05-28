@@ -13,11 +13,15 @@ math:
 	| '(' firstOperand = math ')' operator = SCRIPTOPERATOR '(' secondOperand = math ')'	# mathScript
 	| '(' firstOperand = math ')' operator = SCRIPTOPERATOR secondOperand = math			# mathScript
 	| firstOperand = math operator = SCRIPTOPERATOR secondOperand = math					# mathScript
-	| first = math break = WS last = math													# mathSplit
+	| caseLine (BR caseLine)+																# mathCondFunction
+	| first = math (WS | BR+) last = math													# mathSplit
 	| '"' (.)*? '"'																			# mathRawText
 	| operand = math brackets																# mathBracketsOp
 	| child = brackets																		# mathBrackets
-	| first = vectorLine (WS* recurse = vectorLine)*										# mathMatrix;
+	| first = vectorLine ((BR | WS)* recurse = vectorLine)*									# mathMatrix;
+
+caseLine:
+	WS? '{' WS? content = math WS? '|' WS? condition = math;
 
 brackets:
 	opening = '(' first = math (',' WS? math)* closing = ')'
@@ -36,13 +40,14 @@ token:
 	word = WORDTOKEN	# tokenReservedWord
 	| letter = LETTER	# tokenLetter
 	| number = NUMBER	# tokenNumber
-	| '-' token			# tokenNegation;
+	| '-' token			# tokenNegation
+	| PRIME				# tokenPrime;
 
 LETTER: CAPITAL | LOWERCASE | SPECIALCHARACTER | GREEKLETTER;
 CAPITAL: [A-Z];
 LOWERCASE: [a-z];
 NUMBER: (DIGIT | '.')+;
-WS: [ \r\n\t]+;
+WS: [ \t]+;
 BR: '\r\n' | '\n';
 fragment DIGIT: [0-9];
 NEGATION: [!¬];
@@ -116,6 +121,9 @@ WORDTOKEN:
 
 SPECIALCHARACTER: '|' CAPITAL | '~' (CAPITAL | LOWERCASE);
 
+SEMI: ';';
+PRIME: '\'';
+
 GREEKLETTER:
 	[aA]'lpha'
 	| [bB]'eta'
@@ -141,4 +149,3 @@ GREEKLETTER:
 	| [cC]'hi'
 	| [pP]'si'
 	| [oO]'mega';
-

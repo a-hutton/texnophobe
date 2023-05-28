@@ -6,8 +6,10 @@ import {
 } from "./LatexOperators";
 import {
   BracketsContext,
+  CaseLineContext,
   MathBracketsContext,
   MathBracketsOpContext,
+  MathCondFunctionContext,
   MathMatrixContext,
   MathNotContext,
   MathRawContext,
@@ -21,6 +23,7 @@ import {
   TokenLetterContext,
   TokenNegationContext,
   TokenNumberContext,
+  TokenPrimeContext,
   TokenReservedWordContext,
   VectorChildContext,
   VectorLineContext,
@@ -82,6 +85,15 @@ export class LatexVisitor extends NewMathVisitor<string> {
     }
   };
 
+  visitMathCondFunction = (ctx: MathCondFunctionContext) => {
+    let command = "\n\\begin{cases}\n";
+    for (const child of ctx.caseLine_list()) {
+      command += this.visit(child);
+    }
+    command += "\\end{cases}\n";
+    return command;
+  };
+
   visitMathSplit = (ctx: MathSplitContext) => {
     return this.visit(ctx._first) + this.visit(ctx._last);
   };
@@ -118,6 +130,10 @@ export class LatexVisitor extends NewMathVisitor<string> {
         break;
     }
     return `\n\\begin{${command}}\n${children}\\end{${command}}\n`;
+  };
+
+  visitCaseLine = (ctx: CaseLineContext) => {
+    return `${this.visit(ctx._content)}& ${this.visit(ctx._condition)} \\\\\n`;
   };
 
   visitBrackets = (ctx: BracketsContext) => {
@@ -191,7 +207,7 @@ export class LatexVisitor extends NewMathVisitor<string> {
       original === "then" ||
       original === "otherwise"
     ) {
-      word = `\\text{${original}} `;
+      word = `text{${original} }`;
     }
 
     return `\\${word} `;
@@ -218,6 +234,10 @@ export class LatexVisitor extends NewMathVisitor<string> {
 
   visitTokenNegation = (ctx: TokenNegationContext) => {
     return `-${this.visit(ctx.token())}`;
+  };
+
+  visitTokenPrime = (ctx: TokenPrimeContext) => {
+    return "^{\\prime} ";
   };
 
   #getSimpleOperator(input: string): string {
