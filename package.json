@@ -1,6 +1,6 @@
 {
   "name": "texnophobe",
-  "version": "0.1.3",
+  "version": "0.2.0",
   "description": "A simplified math syntax designed to be (somewhat) readable with or without proper rendering",
   "main": "dist/index.js",
   "keywords": [
