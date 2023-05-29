@@ -1,6 +1,8 @@
+#node folders
 dist
 node_modules
 
+#IDE files
 .vscode
 .idea
 
@@ -9,3 +11,6 @@ node_modules
 
 #the auto-generated parser files
 parser/generated/*
+
+#file for testing
+tests/input.txt
