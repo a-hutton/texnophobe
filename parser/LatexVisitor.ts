@@ -23,7 +23,6 @@ import {
   TokenLetterContext,
   TokenNegationContext,
   TokenNumberContext,
-  TokenPrimeContext,
   TokenReservedWordContext,
   VectorChildContext,
   VectorLineContext,
@@ -126,6 +125,7 @@ export class LatexVisitor extends NewMathVisitor<string> {
         break;
       case "(":
         command = "pmatrix";
+        break;
       default:
         break;
     }
@@ -138,8 +138,8 @@ export class LatexVisitor extends NewMathVisitor<string> {
 
   visitBrackets = (ctx: BracketsContext) => {
     const opening = ctx._opening.text;
-    let openingCommand = "";
-    let closingCommand = "";
+    let openingCommand: string;
+    let closingCommand: string;
     switch (opening) {
       case "(":
         openingCommand = "\\left(";
@@ -161,6 +161,7 @@ export class LatexVisitor extends NewMathVisitor<string> {
       case "<":
         openingCommand = "\\left\\langle ";
         closingCommand = "\\right\\rangle ";
+        break;
       default:
         openingCommand = opening;
         closingCommand = opening;
@@ -236,7 +237,7 @@ export class LatexVisitor extends NewMathVisitor<string> {
     return `-${this.visit(ctx.token())}`;
   };
 
-  visitTokenPrime = (ctx: TokenPrimeContext) => {
+  visitTokenPrime = () => {
     return "^{\\prime} ";
   };
 
