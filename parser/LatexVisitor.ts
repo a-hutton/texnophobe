@@ -33,7 +33,12 @@ export class LatexVisitor extends NewMathVisitor<string> {
   #currentBracketOpening: string = "";
 
   visitMathRaw = (ctx: MathRawContext) => {
-    return ctx.getText().substring(4, ctx.getText().length - 1) + " ";
+    const fullText = ctx.getText();
+    if (fullText.startsWith("$") && fullText.endsWith("$")) {
+      return fullText.substring(1, fullText.length - 1) + " ";
+    } else {
+      return ctx.getText().substring(4, ctx.getText().length - 1) + " ";
+    }
   };
 
   visitMathNot = (ctx: MathNotContext) => {

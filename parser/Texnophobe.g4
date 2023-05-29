@@ -4,6 +4,7 @@ start: math EOF;
 
 math:
 	'raw(' (.)*? ')'																		# mathRaw
+	| '$' (.)*? '$'                                                                         # mathRaw
 	| NEGATION child = math																	# mathNot
 	| (token)+																				# mathToken
 	| first = math operator = SIMPLEOPERATOR last = math									# mathSimpleOperator

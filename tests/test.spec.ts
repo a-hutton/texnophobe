@@ -54,4 +54,10 @@ describe("Latex Generation", () => {
     const actual = generateLatex(original);
     assert.equal(actual, expected);
   });
+  it("can do raw latex $wrapped in dollars$ and by raw()", () => {
+    const original = "x $\\circ$ y == x raw(\\circ) y";
+    const expected = "x \\circ y \\equiv x \\circ y";
+    const actual = generateLatex(original).trim();
+    assert.equal(actual, expected);
+  });
 });
