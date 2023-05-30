@@ -1,10 +1,10 @@
 grammar Texnophobe;
 
-start: math EOF;
+start: (WS | BR)* math (WS | BR)* EOF;
 
 math:
 	'raw(' (.)*? ')'																		# mathRaw
-	| '$' (.)*? '$'                                                                         # mathRaw
+	| '$' (.)*? '$'																			# mathRaw
 	| NEGATION child = math																	# mathNot
 	| (token)+																				# mathToken
 	| first = math operator = SIMPLEOPERATOR last = math									# mathSimpleOperator
