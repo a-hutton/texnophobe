@@ -8,7 +8,7 @@
     "LaTeX"
   ],
   "scripts": {
-    "test": "ts-mocha tests/*.spec.ts",
+    "test": "ts-mocha dist/tests/*.spec.js",
     "build": "tsc --build"
   },
   "repository": {

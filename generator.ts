@@ -1,7 +1,7 @@
 import { CharStream, CommonTokenStream } from "antlr4";
-import TexnophobeLexer from "./parser/generated/TexnophobeLexer";
-import TexnophobeParser from "./parser/generated/TexnophobeParser";
-import { LatexVisitor } from "./parser/LatexVisitor";
+import TexnophobeLexer from "./parser/generated/TexnophobeLexer.js";
+import TexnophobeParser from "./parser/generated/TexnophobeParser.js";
+import { LatexVisitor } from "./parser/LatexVisitor.js";
 
 export function generateLatex(original: string): string {
   const chars = new CharStream(original);

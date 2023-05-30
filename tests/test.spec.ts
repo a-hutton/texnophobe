@@ -1,5 +1,5 @@
 import * as assert from "assert";
-import { generateLatex } from "../generator";
+import { generateLatex } from "../generator.js";
 
 describe("Latex Generation", () => {
   it("can do basic fractions", () => {
